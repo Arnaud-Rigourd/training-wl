@@ -4,5 +4,4 @@ class Review < ApplicationRecord
 
   validates :content, presence: true
   validates :raiting, presence: true, inclusion: RATE
-
 end
