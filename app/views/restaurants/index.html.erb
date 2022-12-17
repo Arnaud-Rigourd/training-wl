@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Here are all your restaurants</h1>
+
+  <% @restaurants.each do |r| %>
+    <ul>
+      <li><%= link_to "#{r.name.upcase},", restaurant_path(r) %><%= " #{r.category} food" %></li>
+      <li><%= "Address: #{r.address}" %></li>
+    </ul>
+  <% end %>
+
+</div>
