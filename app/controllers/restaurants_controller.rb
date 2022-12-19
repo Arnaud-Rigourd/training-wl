@@ -5,6 +5,20 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
+  def new
+    @restaurant = Restaurant.new
+  end
+
+  def create
+    @restaurant = Restaurant.new(restaurant_params)
+
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
     @reviews = @restaurant.reviews
   end
@@ -13,7 +27,6 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    # raise
     if @restaurant.update(restaurant_params)
       redirect_to restaurant_path(@restaurant)
     else
@@ -22,7 +35,6 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    raise
     @restaurant.destroy
     redirect_to restaurants_path
   end
